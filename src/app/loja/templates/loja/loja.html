@@ -1,0 +1,25 @@
+{% extends "loja/main.html" %}
+{% load static %}
+{% block content %}
+
+    <div class="row">
+
+        {% for cu in produtos %}
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{{cu.imageURL}}">
+            <div class="box-element product">
+                <h6><strong> {{cu.nome}} </strong></h6>
+                <hr>
+
+                <button class="btn btn-outline-secondary add-btn">Adicionar ao carrinho</button>
+                <a class="btn btn-outline-success" href="#"> View</a>
+                <h4 style="display: inline-block; float: right; "><strong> ${{cu.preco|floatformat:2}}</strong></h4>
+
+            </div>
+        </div>
+        {% endfor %}
+
+       
+    </div>
+
+{% endblock content %}
