@@ -14,10 +14,9 @@ services:
     depends_on:
       - db
     environment:
-           - DATABASE_HOST=db 
+      - DATABASE_HOST=db 
  
-   
- 
+
   db:
     container_name: Postgres
     image: postgres:13
@@ -31,6 +30,7 @@ services:
 
 volumes:
   postgres_data:
+    external: true
 
 
 
