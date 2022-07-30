@@ -65,6 +65,15 @@ class Pedido(models.Model):
         total = sum([item.quantidade for item in itemspedidos])
         return total
 
+    @property
+    def envio(self):
+        envio = False
+        itemspedidos = self.itempedido_set.all()
+        for i in itemspedidos:
+            if i.produto.digital == False:
+                envio = True
+        return envio
+
 
 class ItemPedido(models.Model):
     pedido = models.ForeignKey(Pedido, on_delete=models.SET_NULL, null=True, blank=True)

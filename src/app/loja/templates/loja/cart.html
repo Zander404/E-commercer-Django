@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="box-element">
-                <a class="btn btn-outline-dark" href="">&#x2190; Continuar comprando</a>
+                <a class="btn btn-outline-dark" href="{% url 'loja' %}">&#x2190; Continuar comprando</a>
 
                 <br>
                 <br>
@@ -15,7 +15,7 @@
                         <th><h5>Itens: <strong>{{pedido.get_cart_items}}</h5></th>
                         <th><h5>Total: <strong>{{pedido.get_cart_total}}</h5></th>
                         <th>
-                            <a style="float:right; margin: 5px" class="btn btn-success" href="{% url 'checkout'%}">Finalizar Compra </a>
+                            <a style="float:right; margin: 5px" class="btn btn-success" href="{% url 'checkout' %}">Finalizar Compra </a>
                         </th>
                     </tr>
                 </table>
@@ -35,14 +35,14 @@
                 </div>
                 {%for item in items %}
                 <div class='cart-row'>
-                    <div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
+                    <div style="flex:2"><img class="row-image" src="{{item.produto.imageURL}}"></div>
                     <div style="flex:2"><p>{{item.produto.nome}}</p></div>
                     <div style="flex:1"><p>{{item.produto.preco|floatformat:2}}</p></div>
                     <div style="flex:1"></div>
                         <p class="quantity">x {{item.quantidade}}</p>
                     <div class="quantity">
-                        <img class="chg-quantity" src="{% static 'img/arrow-up.png' %}">
-                        <img class="chg-quantity" src="{% static 'img/arrow-down.png' %}">
+                        <img data-produto="{{item.produto.id}}" data-action="add" class="chg-quantity update-cart" src="{% static 'img/arrow-up.png' %}">
+                        <img data-produto="{{item.produto.id}}" data-action="remove" class="chg-quantity update-cart" src="{% static 'img/arrow-down.png' %}">
                     </div>
                     <div style="flex: 1;"><p>{{item.get_total}}</p></div>
                 </div>
