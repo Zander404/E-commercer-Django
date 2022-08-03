@@ -32,11 +32,23 @@ def cart(request):
         items = pedido.itempedido_set.all()
         itemsCarrinho = pedido.get_cart_items
     else:
-        cart = json.loads(request.COOOKIES['cart'])
-        print("carrinho", cart)
+        try: 
+            cart = json.loads(request.COOKIES['cart'])
+        except:
+            cart = {}
+            print('Carrinho:', cart)
         items = []
         pedido = {"get_cart_total": 0, "get_cart_items": 0, 'envio': False}
         itemsCarrinho = pedido['get_cart_items']
+
+        for i in cart:
+           itemsCarrinho += cart[i]['quantidade']
+           produto = Produto.objects.get(id=i)
+           total = (produto.preco * cart[i]['quantidade'])
+        #    pedido[get_cart_total] += total
+        #    pedido[get_cart_items] += cart[i]['quantidade']
+
+
     
     context = {'items': items, 'pedido': pedido, 'itemsCarrinho': itemsCarrinho}
     return render(request, 'loja/cart.html', context)
