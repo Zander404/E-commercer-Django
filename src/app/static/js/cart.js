@@ -19,7 +19,7 @@ for(var i = 0; i < updateBtns.length; i++){
 function adicionarCookieItem(produtoId, action){
     console.log('Usuario não logado, adicionando item no cookie')
     if (action == 'add') {
-        if (cart[produtoId] == undefined) {
+        if (cart[produtoId] === undefined) {
             cart[produtoId] = {'quantidade': 1}
         } else {
             cart[produtoId]['quantidade'] += 1
@@ -50,7 +50,7 @@ function updatePedidoUsuario(produtoId, action){
         },
         body: JSON.stringify({
             'produtoId': produtoId,
-            'action': action
+            'action': action,
         })
     }).then(response =>
         response.json()

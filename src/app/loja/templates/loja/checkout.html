@@ -151,6 +151,8 @@
             ).then(data => {
                 console.log('Sucesso: ',data);
                 alert('Pedido realizado com sucesso!');
+                cart = {}
+                document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
                 window.location.href = "{% url 'loja' %}";
             })
         }

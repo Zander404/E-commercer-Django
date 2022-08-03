@@ -1,54 +1,30 @@
 from django.shortcuts import render
 from .models import *
 from django.http import JsonResponse
-import json 
+import json
+from .utils import cookieCart, cartData, guestOrder
 import datetime
 
 # Create your views here.
 
 def loja(request):
 
-    if request.user.is_authenticated:
-        cliente = request.user.cliente
-        pedido, criado = Pedido.objects.get_or_create(cliente=cliente, complete=False)
-        items = pedido.itempedido_set.all()
-        itemsCarrinho = pedido.get_cart_items
+    data = cartData(request)
+    itemsCarrinho = data['itemsCarrinho']
 
-    else:
-        items = []
-        pedido = {"get_cart_total": 0, "get_cart_items": 0, 'envio': False}
-        itemsCarrinho = pedido['get_cart_items']
-
+        
     produtos = Produto.objects.all()
+
     context = {'produtos': produtos, 'itemsCarrinho': itemsCarrinho}
     return render(request, 'loja/loja.html', context)
 
 
 def cart(request):
 
-    if request.user.is_authenticated:
-        cliente = request.user.cliente
-        pedido, criado = Pedido.objects.get_or_create(cliente=cliente, complete=False)
-        items = pedido.itempedido_set.all()
-        itemsCarrinho = pedido.get_cart_items
-    else:
-        try: 
-            cart = json.loads(request.COOKIES['cart'])
-        except:
-            cart = {}
-            print('Carrinho:', cart)
-        items = []
-        pedido = {"get_cart_total": 0, "get_cart_items": 0, 'envio': False}
-        itemsCarrinho = pedido['get_cart_items']
-
-        for i in cart:
-           itemsCarrinho += cart[i]['quantidade']
-           produto = Produto.objects.get(id=i)
-           total = (produto.preco * cart[i]['quantidade'])
-        #    pedido[get_cart_total] += total
-        #    pedido[get_cart_items] += cart[i]['quantidade']
-
-
+    data = cartData(request)
+    items = data['items']
+    pedido = data['pedido']
+    itemsCarrinho = data['itemsCarrinho']
     
     context = {'items': items, 'pedido': pedido, 'itemsCarrinho': itemsCarrinho}
     return render(request, 'loja/cart.html', context)
@@ -56,16 +32,11 @@ def cart(request):
      
 def checkout(request):
 
-    if request.user.is_authenticated:
-        cliente = request.user.cliente
-        pedido, criado = Pedido.objects.get_or_create(cliente=cliente, complete=False)
-        items = pedido.itempedido_set.all()
-        itemsCarrinho = pedido.get_cart_items
+    data = cartData(request)
+    items = data['items']
+    pedido = data['pedido']
+    itemsCarrinho = data['itemsCarrinho']
 
-    else:
-        items = []
-        pedido = {"get_cart_total": 0, "get_cart_items": 0, 'envio': False}
-        itemsCarrinho = pedido['get_cart_items']
 
     context = {'items': items, 'pedido': pedido, 'itemsCarrinho': itemsCarrinho}
     return render(request, 'loja/checkout.html', context)
@@ -107,23 +78,25 @@ def process_pedido(request):
     if request.user.is_authenticated:
         cliente = request.user.cliente
         pedido, criado = Pedido.objects.get_or_create(cliente=cliente, complete=False)
-        total = float(data['form']['total'])
-        pedido.transaction_id = transaction_id
-
-        if total == pedido.get_cart_total:
-            pedido.complete = True
-        pedido.save()
-
-        if pedido.envio == True:
-            Endereco_de_Entrega.objects.create(
-                cliente=cliente,
-                pedido=pedido,
-                endereco=data['envio']['endereco'],
-                cidade=data['envio']['cidade'],
-                estado=data['envio']['estado'],
-                cep=data['envio']['cep'],
-                )
 
     else:
-        print('Usuário não está logado')
+        cliente, pedido = guestOrder(request, data)
+
+    total = float(data['form']['total'])
+    pedido.transaction_id = transaction_id
+
+    if total == pedido.get_cart_total:
+        pedido.complete = True
+    pedido.save()
+
+    if pedido.envio == True:
+        Endereco_de_Entrega.objects.create(
+            cliente=cliente,
+            pedido=pedido,
+            endereco=data['envio']['endereco'],
+            cidade=data['envio']['cidade'],
+            estado=data['envio']['estado'],
+            cep=data['envio']['cep'],
+            )
+  
     return JsonResponse('Pedido processado com sucesso!', safe=False)
