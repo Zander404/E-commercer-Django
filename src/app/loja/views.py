@@ -32,6 +32,8 @@ def cart(request):
         items = pedido.itempedido_set.all()
         itemsCarrinho = pedido.get_cart_items
     else:
+        cart = json.loads(request.COOOKIES['cart'])
+        print("carrinho", cart)
         items = []
         pedido = {"get_cart_total": 0, "get_cart_items": 0, 'envio': False}
         itemsCarrinho = pedido['get_cart_items']
