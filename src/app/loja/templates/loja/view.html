@@ -1,0 +1,104 @@
+{% extends "loja/main.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+
+    .view_produto {
+      margin-top: 20px;
+      align-items: flex-end;
+      text-align: left;
+      vertical-align: auto;
+    }
+
+    .descricao_do_produto {
+      margin-top: 20px;
+      align-items: flex-end;
+      text-align: left;
+      vertical-align: auto;
+      margin-bottom: 20px;
+      margin: 20px;
+      border-radius: 10px;
+      padding: 20px;
+      background-color: #f2f2f2;
+
+    }
+    
+    .descricao_do_produto a, .descricao_do_produto button{
+      margin-top: 10px;
+      align-items: flex-end;
+      text-align: left;
+      vertical-align: auto;
+      margin-bottom: 10px;
+      margin: 10px;
+      border-radius: 10px;
+
+    }
+
+    .view_produto_box {
+      display: auto;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      background-color: rgb(122, 118, 118);
+    }
+
+    .col-lg-4{
+      display: auto;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      background-color: rgb(251, 251, 251);
+    }
+
+    .frame_4{
+      display: flex;
+
+      background-color: green;
+      align-content: space-between;
+    }
+
+     .frame_4 > div{ 
+      display: block;
+      background-color: #fff;
+      line-height: 20px;
+      padding: 10px;
+      margin: 10px;
+      border: 1px solid #ccc;
+     }
+  </style>
+
+
+<div class=view_produto>
+  <div class="conteudo"></div>
+    <div class="frame_4">
+      
+      <div class="col-lg-4">
+        <p>{{produto.nome}}</p>
+        <img class="thumbnail" src="{{produto.imageURL}}">
+        
+
+      </div>
+      <div class="view_produto_box">
+        Descrição do Produto:
+          <p>{{produto.descricao}}</p>
+      </div>
+      <div class="descricao_do_produto">
+        <a class="btn btn-outline-success" href="{% url 'loja' %}"> Voltar para a Loja</a>
+        <button data-produto="{{produto.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Adicionar ao carrinho</button>
+        <a class="btn btn-outline-secondary add-btn update-cart" href="{% url 'cart' %}">
+          <img id="cart-icon" src="{% static 'img/cart.png' %}">
+          Ver Carrinho
+          </a>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+{% endblock content %}

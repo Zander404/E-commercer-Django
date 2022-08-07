@@ -101,7 +101,13 @@
         })
 
         document.getElementById('make-payment').addEventListener('click', function(e){
+            if (total == 0){
+                alert('Carro Vazio!!! Adicione Produtos para completar a compra')
+                alert('Redirecionando para a Loja...')
+                window.location.href = "{% url 'loja' %}";
+            }else{
          submitFormData()
+            }
         })
 
         function submitFormData(){

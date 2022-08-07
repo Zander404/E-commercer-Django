@@ -22,6 +22,7 @@ class Produto(models.Model):
     preco = models.DecimalField(max_digits=7, decimal_places=2)
     digital = models.BooleanField(default=False, null=True, blank=False)
     image = models.ImageField(null=True, blank=True)
+    descricao = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.nome

@@ -1,0 +1,16 @@
+<!-- 
+{% block content %}
+
+<body background="https://img.freepik.com/vetores-gratis/ilustracao-dos-desenhos-animados-do-cofre-de-banco-porta-segura-do-ferro-metalico_1441-1915.jpg?t=st=1650806118~exp=1650806718~hmac=d95feddc9a8d27914ed329051c19d7c45b239ad9f8efc7ab1b0dbea020b3728d&w=1060">
+<h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
+      Listagem das Agência </h1>
+      <input type="submit" value="Nova Agência" onclick="location.href= '{% url 'createAgencia' %}'">
+<ul>
+    {% for Agencia in object_list %}
+    <li> Agência: {{ Agencia.name_Agencia }} -- Cód de Agência:  {{ Agencia.cod }} -- Cód de Banco {{ Agencia.cod_do_Banco }} - 
+        <a href="{% url 'updateAgencia' pk=Agencia.cod %}">Editar</a> - <a href="{% url 'deleteAgencia' pk=Agencia.cod %}">Deletar</a></li>
+    {% endfor %}
+</ul>
+
+
+{% endblock content %} -->

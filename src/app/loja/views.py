@@ -5,6 +5,11 @@ import json
 from .utils import cookieCart, cartData, guestOrder
 import datetime
 
+
+#import para generic da view
+from  django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+
 # Create your views here.
 
 def loja(request):
@@ -17,6 +22,19 @@ def loja(request):
 
     context = {'produtos': produtos, 'itemsCarrinho': itemsCarrinho}
     return render(request, 'loja/loja.html', context)
+
+
+def view (request, id):
+    data = cartData(request)
+    itemsCarrinho = data['itemsCarrinho']
+
+        
+    produto = Produto.objects.get(id = id)
+    print(produto)
+   
+
+    context = {'produto': produto, 'itemsCarrinho': itemsCarrinho}
+    return render(request, 'loja/view.html', context)
 
 
 def cart(request):
@@ -100,3 +118,64 @@ def process_pedido(request):
             )
   
     return JsonResponse('Pedido processado com sucesso!', safe=False)
+
+#Views da Dashboard
+
+
+
+# #Produtos
+# class ProdutoCreate(CreateView):
+#     model  = Produto
+#     queryset = Produto.objects.all()
+#     success_url = reverse_lazy('listProduto')
+
+
+# class ProdutoList(ListView):
+#     model = Produto
+#     queryset = Produto.objects.all()
+#     ordering = ['id']
+#     paginate_by = 10
+
+
+# class ProdutoUpdate(UpdateView):
+#     model = Produto
+#     fields = "__all__"
+#     success_url = reverse_lazy('listProduto')
+
+
+# class ProdutoDelete(DeleteView):
+#     model = Produto
+#     queryset = Produto.objects.all()
+#     success_url = reverse_lazy('listProduto')
+
+
+
+
+# #CRUD de Clientes
+
+# class ClienteCreate(CreateView):
+#     model = Cliente
+#     queryset = Cliente.objects.all()
+#     success_url = reverse_lazy('listCliente')
+
+
+# class ClienteList(ListView):
+#     model = Cliente
+#     queryset = Cliente.objects.all()
+#     ordering = ['id']
+#     paginate_by = 10
+
+
+# class ClienteUpdate(UpdateView):
+#     model = Cliente
+#     fields = "__all__"
+#     success_url = reverse_lazy('listCliente')
+
+
+# class ClienteDelete(DeleteView):
+#     model = Cliente
+#     queryset = Cliente.objects.all()
+#     success_url = reverse_lazy('listCliente')
+
+
+

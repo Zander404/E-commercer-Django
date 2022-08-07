@@ -99,3 +99,21 @@ h1,h2,h3,h4,h5,h6{
 .hidden{
 	display: none!important;
 }
+
+.descricao_do_produto {
+	width: 50%;
+	float: right;
+	margin-right: 10px;
+	text-align: justify;
+}
+
+.view_produto_box {
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: rgb(251, 251, 251);
+}
