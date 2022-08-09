@@ -72,8 +72,10 @@
 	      </li>
 	    </ul>
         <div class="form-inline my-2 my-lg-0">
-			<a class="btn btn-warning" href="{%url 'register'%}">Sign In</a>
-            <a class="btn btn-warning" href="{%url 'login'%}">Login</a>
+			<a class="btn btn-warning" href="{%url 'register'%}" id="signin">Sign In</a>
+
+            <a class="btn btn-warning" href="{%url 'login'%}" id="login">Login</a>
+			<a class="btn btn-warning hidden" href=accounts/logout/ id="logout"> Logout</a>
             
             <a href="{% url 'cart' %}">
                 <img id="cart-icon" src="{% static 'img/cart.png' %}">
@@ -100,6 +102,14 @@
 				</div>
 			</div>
 			</footer>
+
+	<script>
+		if (user != 'AnonymousUser') {
+			document.getElementById("signin").classList.add("hidden");
+			document.getElementById("login").classList.add("hidden");
+			document.getElementById("logout").classList.remove("hidden");
+		}
+	</script>
 
 
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
