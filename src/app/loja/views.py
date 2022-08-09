@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from .models import *
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 import json
 from .utils import cookieCart, cartData, guestOrder
 import datetime
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
 
 
 #import para generic da view
@@ -121,61 +123,65 @@ def process_pedido(request):
 
 #Views da Dashboard
 
-
-
-# #Produtos
-# class ProdutoCreate(CreateView):
-#     model  = Produto
-#     queryset = Produto.objects.all()
-#     success_url = reverse_lazy('listProduto')
-
-
-# class ProdutoList(ListView):
-#     model = Produto
-#     queryset = Produto.objects.all()
-#     ordering = ['id']
-#     paginate_by = 10
-
-
-# class ProdutoUpdate(UpdateView):
-#     model = Produto
-#     fields = "__all__"
-#     success_url = reverse_lazy('listProduto')
-
-
-# class ProdutoDelete(DeleteView):
-#     model = Produto
-#     queryset = Produto.objects.all()
-#     success_url = reverse_lazy('listProduto')
+def dashboard(request):
+    return render(request, 'loja/dashboard.html')
+    
 
 
 
-
-# #CRUD de Clientes
-
-# class ClienteCreate(CreateView):
-#     model = Cliente
-#     queryset = Cliente.objects.all()
-#     success_url = reverse_lazy('listCliente')
+#Produtos
+class ProdutoCreate(CreateView):
+    model  = Produto
+    queryset = Produto.objects.all()
+    success_url = reverse_lazy('listProduto')
 
 
-# class ClienteList(ListView):
-#     model = Cliente
-#     queryset = Cliente.objects.all()
-#     ordering = ['id']
-#     paginate_by = 10
+class ProdutoList(ListView):
+    model = Produto
+    queryset = Produto.objects.all()
+    ordering = ['id']
+    paginate_by = 10
 
 
-# class ClienteUpdate(UpdateView):
-#     model = Cliente
-#     fields = "__all__"
-#     success_url = reverse_lazy('listCliente')
+class ProdutoUpdate(UpdateView):
+    model = Produto
+    fields = "__all__"
+    success_url = reverse_lazy('listProduto')
 
 
-# class ClienteDelete(DeleteView):
-#     model = Cliente
-#     queryset = Cliente.objects.all()
-#     success_url = reverse_lazy('listCliente')
+class ProdutoDelete(DeleteView):
+    model = Produto
+    queryset = Produto.objects.all()
+    success_url = reverse_lazy('listProduto')
+
+
+
+
+#CRUD de Clientes
+
+class ClienteCreate(CreateView):
+    model = Cliente
+    queryset = Cliente.objects.all()
+    success_url = reverse_lazy('listCliente')
+
+
+class ClienteList(ListView):
+    model = Cliente
+    queryset = Cliente.objects.all()
+    ordering = ['id']
+    paginate_by = 10
+
+
+class ClienteUpdate(UpdateView):
+    model = Cliente
+    fields = "__all__"
+    success_url = reverse_lazy('listCliente')
+
+
+class ClienteDelete(DeleteView):
+    model = Cliente
+    queryset = Cliente.objects.all()
+    success_url = reverse_lazy('listCliente')
 
 
 

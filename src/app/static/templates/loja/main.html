@@ -72,7 +72,8 @@
 	      </li>
 	    </ul>
         <div class="form-inline my-2 my-lg-0">
-            <a class="btn btn-warning" href="http://localhost:8000/admin/">Login</a>
+			<a class="btn btn-warning" href="{%url 'register'%}">Sign In</a>
+            <a class="btn btn-warning" href="{%url 'login'%}">Login</a>
             
             <a href="{% url 'cart' %}">
                 <img id="cart-icon" src="{% static 'img/cart.png' %}">
@@ -91,6 +92,14 @@
 
             {% endblock content %}
          </div>
+		 <footer class="pt-4 my-md-5 pt-md-5 border-top container" >
+			<div class="row">
+				<div class="col-12 col-md">
+				<a href="{% url "loja" %}">Lulu</a>
+				<small class="d-block mb-3 text-muted">&copy; 2022</small>
+				</div>
+			</div>
+			</footer>
 
 
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
