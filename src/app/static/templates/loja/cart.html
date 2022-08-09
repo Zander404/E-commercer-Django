@@ -15,7 +15,7 @@
                         <th><h5>Itens: <strong>{{pedido.get_cart_items}}</h5></th>
                         <th><h5>Total: <strong>{{pedido.get_cart_total}}</h5></th>
                         <th>
-                            <a style="float:right; margin: 5px" class="btn btn-success" href="{% url 'checkout' %}">Finalizar Compra </a>
+                            <button style="float:right; margin: 5px" class="btn btn-success" href="{% url 'checkout' %}" id="finalizar">Finalizar Compra </button>
                         </th>
                     </tr>
                 </table>
@@ -54,6 +54,21 @@
          
         </div>
     </div>
+
+    <script>
+       var item = '{{pedido.get_cart_items}}';
+        
+        document.getElementById('finalizar').addEventListener('click', function(e){
+            if (item == 0){
+                alert('Carro Vazio!!! Adicione Produtos para completar a compra')
+                alert('Redirecionando para a Loja...')
+                window.location.href = "{% url 'loja' %}";
+            }
+            else{
+                window.location.href = "{% url 'checkout' %}";
+            }
+        })
+    </script>
 
 
 
