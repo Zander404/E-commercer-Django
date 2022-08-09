@@ -1,4 +1,10 @@
-Django==3.1.2
-psycopg2-binary==2.9.3
-gunicorn==19.9.0
+Django
+psycopg2-binary
+gunicorn
 Pillow
+asgiref
+django-heroku
+psycopg2
+sqlparse
+whitenoise
+dj-database-url
