@@ -1,0 +1,15 @@
+{% extends "loja/main.html" %}
+{% load static %}
+{% block content %}
+
+<h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
+    Tem certeza que quer apagar o Produto: '{{ object.nome }}'? </h1>
+<form action="." method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Sim tenho certeza" >
+    <input type="reset" value="Não quero apagar" onclick ="location.href = '{% url 'listProduto' %}'" >
+</form>
+
+
+{%endblock content%}

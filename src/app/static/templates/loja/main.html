@@ -6,6 +6,7 @@
 	<title>Ecom</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -69,7 +70,10 @@
 	    <ul class="navbar-nav mr-auto">
 	      <li class="nav-item active">
 	        <a class="nav-link" href="{% url 'loja' %}"> Loja <span class="sr-only">(current)</span></a>
+			
 	      </li>
+		  <a id="adm" class="nav-link hidden" href="{% url 'listCliente' %}"> Clientes <span class="sr-only">(current)</span></a>
+		  <a id="adm-1" class="nav-link hidden" href="{% url 'listProduto' %}"> Produtos <span class="sr-only">(current)</span></a>
 	    </ul>
         <div class="form-inline my-2 my-lg-0">
 			<a class="btn btn-warning" href="{%url 'register'%}" id="signin">Sign In</a>
@@ -97,8 +101,8 @@
 		 <footer class="pt-4 my-md-5 pt-md-5 border-top container" >
 			<div class="row">
 				<div class="col-12 col-md">
-				<a href="{% url "loja" %}">Lulu</a>
-				<small class="d-block mb-3 text-muted">&copy; 2022</small>
+				<a href="{% url 'loja' %}">Lulu</a>
+				<a href="http://localhost:8000/admin/"><small class="d-block mb-3 text-muted">&copy; 2022</small></a>
 				</div>
 			</div>
 			</footer>
@@ -108,6 +112,8 @@
 			document.getElementById("signin").classList.add("hidden");
 			document.getElementById("login").classList.add("hidden");
 			document.getElementById("logout").classList.remove("hidden");
+			document.getElementById("adm").classList.remove("hidden");
+			document.getElementById("adm-1").classList.remove("hidden");
 		}
 	</script>
 

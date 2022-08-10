@@ -106,7 +106,7 @@
                 alert('Redirecionando para a Loja...')
                 window.location.href = "{% url 'loja' %}";
             }else{
-         submitFormData()
+                submitFormData()
             }
         })
 
@@ -141,7 +141,7 @@
 
             console.log('Usuario logado, atualizando pedido')
 
-            var url = '/process_pedido/';
+            var url = '/process_pedido/'
             fetch(url, {
                 method: 'POST',
                 headers: {
@@ -159,7 +159,7 @@
                 alert('Pedido realizado com sucesso!');
                 cart = {}
                 document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
-                window.location.href = "{% url 'loja' %}";
+                window.location.href = "{% url 'loja' %}"
             })
         }
 

@@ -86,8 +86,11 @@
       <div class="view_produto_box">
         Descrição do Produto:
           <p>{{produto.descricao}}</p>
+          <br>
+          <p>Preço: R$ {{produto.preco}}</p>
       </div>
       <div class="descricao_do_produto">
+        
         <a class="btn btn-outline-success" href="{% url 'loja' %}"> Voltar para a Loja</a>
         <button data-produto="{{produto.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Adicionar ao carrinho</button>
         <a class="btn btn-outline-secondary add-btn update-cart" href="{% url 'cart' %}">

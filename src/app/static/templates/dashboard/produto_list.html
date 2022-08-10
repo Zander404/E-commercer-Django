@@ -1,0 +1,53 @@
+{% extends "loja/main.html" %}
+{% load static %}
+{% block content %}
+
+
+<main>
+            
+    <section class="cadastro">
+        <h1 class="cadastro__title" > Listagem dos produtos
+ </h1>
+        <br>
+        <br>
+        
+        <input class="cadastro__novo" type="submit" value="Novo Produto" onclick="location.href= '{% url 'createProduto' %}'">
+        
+        <table border="1" id="tabela" >
+            <thead class="cadastro__thead">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Produto</th>
+                    <th class="cadastro__th" scope="col">Opções</th>
+                </tr>
+
+            </thead>
+
+            <tbody class="cadastro_tbody">
+            
+                {% for Produto in object_list %}
+                    <tr scope="row">
+                        <td class="cadastro__data"> {{ Produto.id }} </td>    
+                        <td class="cadastro__data"> {{ Produto.nome }}</td>
+                        <td class="cadastro__data"> 
+                            <a href="{% url 'updateProduto' Produto.id %}"><button class="btn btn-warning btn-sm" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>
+                            <a href="{% url 'deleteProduto' Produto.id %}"><button class="btn btn-danger btn-sm" title="Deletar"><i class="fa fa-trash" aria-hidden="true"></i></button></a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="page-links">
+
+        {% if page_obj.has_previous %}
+            <a href="{% url 'listProduto' %}?page={{ page_obj.previous_page_number}}" >Anterior</a>
+        {% endif %}
+
+        {% if page_obj.has_next %}
+            <a href="{% url 'listProduto' %}?page={{ page_obj.next_page_number}}"> Próximo </a>
+        {% endif %}
+    </div>
+
+{%endblock content%}

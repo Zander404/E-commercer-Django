@@ -8,3 +8,4 @@ psycopg2
 sqlparse
 whitenoise
 dj-database-url
+django-braces
