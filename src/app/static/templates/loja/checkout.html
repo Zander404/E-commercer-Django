@@ -45,7 +45,11 @@
             <br>
             <div class="box-element hidden" id="payment-info">
                 <small>Opções de Pagamento</small>
-                <button id="make-payment"> Pagar </button>
+                <button id="make-payment">
+                    <img id="debit" src="{%static 'img/debit.png'%}"> Débito </button>
+                <p id="divisor">OU</p>
+                <button id="make-payment-credit">
+                    <img id="credit-card" src="{%static 'img/credit_card.png'%}"> Crédito </button>
             </div>
 
         </div>
@@ -101,6 +105,16 @@
         })
 
         document.getElementById('make-payment').addEventListener('click', function(e){
+            if (total == 0){
+                alert('Carro Vazio!!! Adicione Produtos para completar a compra')
+                alert('Redirecionando para a Loja...')
+                window.location.href = "{% url 'loja' %}";
+            }else{
+                submitFormData()
+            }
+        })
+        
+        document.getElementById('make-payment-credit').addEventListener('click', function(e){
             if (total == 0){
                 alert('Carro Vazio!!! Adicione Produtos para completar a compra')
                 alert('Redirecionando para a Loja...')

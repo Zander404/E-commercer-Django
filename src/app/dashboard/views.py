@@ -5,6 +5,8 @@ from loja.models import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from braces.views import GroupRequiredMixin
 
+from . import decorators
+
 # Create your views here.
 
 
@@ -47,6 +49,7 @@ class ProdutoDelete(DeleteView, LoginRequiredMixin):
 
 #CRUD de Clientes
 
+
 class ClienteCreate(CreateView, LoginRequiredMixin):
     login_url: reverse_lazy('login')
     model = Cliente
@@ -54,7 +57,7 @@ class ClienteCreate(CreateView, LoginRequiredMixin):
     queryset = Cliente.objects.all()
     success_url = reverse_lazy('listCliente')
     template_name = 'dashboard/cliente_form.html'
-    group_required = [u"Administrador"]
+    group_required = [u"Gerente"]
 
 
 class ClienteList(ListView, LoginRequiredMixin, ):

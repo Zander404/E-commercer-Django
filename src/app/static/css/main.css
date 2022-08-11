@@ -1,3 +1,5 @@
+/* MAIN */
+
 body{
 	background-color: hsla(100, 58%, 13%, 0.778);
 }
@@ -5,6 +7,7 @@ body{
 h1,h2,h3,h4,h5,h6{
 	color:hsl(0, 100%, 93%);
 }
+
 
 .box-element{
 	box-shadow:hsl(0, 0%, 100%) 0 0 16px;
@@ -31,6 +34,9 @@ h1,h2,h3,h4,h5,h6{
 	background-color: #1b6a2f!important;
 }
 
+
+
+/* CARRINHO */
 #cart-icon{
 	width:25px;
 	display: inline-block;
@@ -118,89 +124,64 @@ h1,h2,h3,h4,h5,h6{
   background-color: rgb(251, 251, 251);
 }
 
+#make-payment {
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: rgb(255, 140, 0);
+
+}
+#make-payment:hover {
+  background-color: rgb(247, 155, 63);
+}
+
+#make-payment-credit {
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: rgb(0, 153, 255);
+
+}
+
+#make-payment-credit:hover {
+  background-color: rgb(0, 153, 255);
+}
+
+#credit-card {
+	width:35px;
+	display: inline-block;
+	margin-left: 15px;
+
+}
+#debit {
+	width:35px;
+	display: inline-block;
+	margin-left: 15px;
+}
+
+#divisor {
+	width:100%;
+	height:1px;
+	background-color: #ccc;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+}
 
 
-.pagination {
-	display: flex;
-	padding-left: 0;
-	list-style: none;
-	border-radius: 0.25rem;
-  }
-  
-  .page-link {
-	position: relative;
-	display: block;
-	padding: 0.5rem 0.75rem;
-	margin-left: -1px;
-	line-height: 1.25;
-	color: #007bff;
-	background-color: #fff;
-	border: 1px solid #dee2e6;
-  }
-  .page-link:hover {
-	z-index: 2;
-	color: #0056b3;
-	text-decoration: none;
-	background-color: #e9ecef;
-	border-color: #dee2e6;
-  }
-  .page-link:focus {
-	z-index: 3;
-	outline: 0;
-	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-  }
-  
-  .page-item:first-child .page-link {
-	margin-left: 0;
-	border-top-left-radius: 0.25rem;
-	border-bottom-left-radius: 0.25rem;
-  }
-  .page-item:last-child .page-link {
-	border-top-right-radius: 0.25rem;
-	border-bottom-right-radius: 0.25rem;
-  }
-  .page-item.active .page-link {
-	z-index: 3;
-	color: #fff;
-	background-color: #007bff;
-	border-color: #007bff;
-  }
-  .page-item.disabled .page-link {
-	color: #6c757d;
-	pointer-events: none;
-	cursor: auto;
-	background-color: #fff;
-	border-color: #dee2e6;
-  }
-  
-  .pagination-lg .page-link {
-	padding: 0.75rem 1.5rem;
-	font-size: 1.25rem;
-	line-height: 1.5;
-  }
-  .pagination-lg .page-item:first-child .page-link {
-	border-top-left-radius: 0.3rem;
-	border-bottom-left-radius: 0.3rem;
-  }
-  .pagination-lg .page-item:last-child .page-link {
-	border-top-right-radius: 0.3rem;
-	border-bottom-right-radius: 0.3rem;
-  }
-  
-  .pagination-sm .page-link {
-	padding: 0.25rem 0.5rem;
-	font-size: 0.875rem;
-	line-height: 1.5;
-  }
-  .pagination-sm .page-item:first-child .page-link {
-	border-top-left-radius: 0.2rem;
-	border-bottom-left-radius: 0.2rem;
-  }
-  .pagination-sm .page-item:last-child .page-link {
-	border-top-right-radius: 0.2rem;
-	border-bottom-right-radius: 0.2rem;
-  }
 
+
+
+
+/* CRUD */
 
   .cadastro{
 	display: flex;
@@ -224,14 +205,12 @@ width: 100%;
 }
 
 .cadastro__thead{
-/* background-color: aliceblue; */
 border-radius: 33%;
 border: none;
 background-color: rgb(249, 64, 64);
 }
 
 .cadastro__tbody{
-/* background-color: #1B77F3; */
 display: flex;
 border:none;
 border-radius: 33%;
@@ -240,4 +219,20 @@ border-radius: 33%;
 .cadastro__data{
 	background-color: #a4b4ab;
 	
+}
+
+
+.page-links a {
+	color: #fff;
+	text-decoration: none;
+	margin-top: 10px;
+	border-radius: 0%;
+	padding: 5px;
+	margin-right: 5px;
+
+}
+
+.page-links a:hover{
+	background-color: #fff;
+	color: #000;
 }
