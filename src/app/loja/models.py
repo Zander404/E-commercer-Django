@@ -1,3 +1,4 @@
+from distutils.command import upload
 from operator import mod
 from django.db import models
 from django.contrib.auth.models import User
@@ -22,8 +23,17 @@ class Produto(models.Model):
     nome = models.CharField(max_length=200, null=True)
     preco = models.DecimalField(max_digits=7, decimal_places=2)
     digital = models.BooleanField(default=False, null=True, blank=False)
-    image = models.ImageField(null=True, blank=True, upload_to='')
+    image = models.ImageField("image", null=True, blank=True, upload_to='produtos')
     descricao = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.nome
+
+    class Meta:
+        db_table = 'produto'
+        verbose_name = 'Produto'
+        verbose_name_plural = 'Produtos'
+    
 
     def __str__(self):
         return self.nome
@@ -33,7 +43,7 @@ class Produto(models.Model):
         try:
             url = self.image.url
         except:
-            url = ''
+            url = 'static/img/placeholder.png'
         return url
 
     class Meta:

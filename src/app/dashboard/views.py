@@ -14,18 +14,35 @@ def dashboard(request):
     return render(request, 'dashboard/index.html')
     
 #Produtos
+class ProdutoList(ListView):
+    model = Produto
+    template_name = 'dashboard/produto/list.html'
+    login_url = 'login'
+    raise_exceptions = True
 
-class ProdutoCreate(CreateView, LoginRequiredMixin, GroupRequiredMixin ):
-    login_url: reverse_lazy('login')
-    group_required = u"Administrador"
-    model  = Produto
-    fields = "__all__"
+class ProdutoCreate(CreateView, GroupRequiredMixin):
+    model = Produto
     template_name = 'dashboard/produto_form.html'
+    login_url = 'login'
+    raise_exceptions = True
+    group_required = [u'Administrador']
+    fields = ['nome', 'preco', 'digital', 'image', 'descricao']
     success_url = reverse_lazy('listProduto')
+
+    def form_valid(self, form):
+        form.instance.usuario = self.request.user
+        return super().form_valid(form)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['botao'] = 'Cadastrar'
+        return context
+
     
 
 
-class ProdutoList(ListView, LoginRequiredMixin, ):
+class ProdutoList(ListView, GroupRequiredMixin ):
+    group_required = [u"Administrador"]
     model = Produto
     queryset = Produto.objects.all()
     ordering = ['id']
@@ -68,12 +85,13 @@ class ClienteList(ListView, LoginRequiredMixin, ):
     template_name = 'dashboard/cliente_list.html'
 
 
-class ClienteUpdate(UpdateView, LoginRequiredMixin, ):
+class ClienteUpdate(UpdateView, LoginRequiredMixin ):
+    group_required = [u"gerente"]
     model = Cliente
     fields = "__all__"
     success_url = reverse_lazy('listCliente')
     template_name = 'dashboard/cliente_form.html'
-    group_required = [u"gerente"]
+  
 
 
 class ClienteDelete(DeleteView, LoginRequiredMixin, ):
