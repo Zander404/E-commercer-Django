@@ -81,6 +81,7 @@
     <script type="text/javascript">
         var envio = '{{pedido.envio}}'
         var total = '{{pedido.get_cart_total|floatformat:2}}'
+        var nome = '{{ cliente.nome }}'
 
         if(envio == 'False'){
             document.getElementById('shipping-info').innerHTML = '';
@@ -94,6 +95,9 @@
         if (envio == 'False' && user != 'AnonymousUser'){
             document.getElementById('form-wrapper').classList.add('hidden');
             document.getElementById('payment-info').classList.remove('hidden');
+        }
+        if (nome == 'Repetido'){
+            alert('Nome inválido!!!')
         }
         var form = document.getElementById('form')
 

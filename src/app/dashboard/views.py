@@ -14,6 +14,7 @@ def dashboard(request):
     return render(request, 'dashboard/index.html')
     
 #Produtos
+
 class ProdutoList(ListView):
     model = Produto
     template_name = 'dashboard/produto/list.html'
@@ -38,8 +39,6 @@ class ProdutoCreate(CreateView, GroupRequiredMixin):
         context['botao'] = 'Cadastrar'
         return context
 
-    
-
 
 class ProdutoList(ListView, GroupRequiredMixin ):
     group_required = [u"Administrador"]
@@ -63,6 +62,10 @@ class ProdutoDelete(DeleteView, LoginRequiredMixin):
     success_url = reverse_lazy('listProduto')
     template_name = 'dashboard/produto_confirm_delete.html'
     
+
+
+
+
 
 #CRUD de Clientes
 
@@ -100,4 +103,42 @@ class ClienteDelete(DeleteView, LoginRequiredMixin, ):
     success_url = reverse_lazy('listCliente')
     template_name = 'dashboard/cliente_confirm_delete.html'
     group_required = [u"gerente"]
+
+
+#Crud de Pedidos
+class PedidoCreate(CreateView, LoginRequiredMixin):
+    login_url: reverse_lazy('login')
+    model = Pedido
+    fields = "__all__"
+    queryset = Pedido.objects.all()
+    success_url = reverse_lazy('listPedido')
+    template_name = 'dashboard/pedido_form.html'
+    group_required = [u"gerente"]
+
+class PedidoList(ListView, LoginRequiredMixin):
+    model = Pedido
+    queryset = Pedido.objects.all()
+    ordering =['id']
+    paginated_by = 10
+    template_name = 'dashboard/pedido_list.html'
+    group_required = [u"gerente"]
+
+class PedidoUpdate(UpdateView, LoginRequiredMixin):
+    model = Pedido
+    fields = '__all__'
+    success_url = reverse_lazy('listPedido')
+    template_name = 'dashboard/pedido_form.html'
+    group_required = [u"gerente"]
+
+
+class PedidoDelete(DeleteView, LoginRequiredMixin):
+    model = Pedido
+    queryset = Pedido.objects.all()
+    success_url = reverse_lazy('listPedido')
+    template_name = 'dashboard/pedido_confirm_delete.html'
+    group_required = [u"gerente"]
+
+
+
+
 

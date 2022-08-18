@@ -22,4 +22,11 @@ urlpatterns = [
    path("produto/createProduto/", views.ProdutoCreate.as_view(), name="createProduto"),
    path("produto/updateProduto/<int:pk>/", views.ProdutoUpdate.as_view(), name="updateProduto"),	
    path("produto/deleteProduto/<int:pk>/", views.ProdutoDelete.as_view(), name="deleteProduto"),
+
+
+   #Crud Pedidos
+   path("pedido/listPedido/", views.PedidoList.as_view(), name='listPedido'),
+   path("pedido/createPedido/", views.PedidoCreate.as_view(), name='createPedido'),
+   path("pedido/updatePedido/<int:pk>/", views.PedidoUpdate.as_view(), name="updatePedido"),
+   path("pedido/deletePedido/<int:pk>/", views.PedidoDelete.as_view(), name='deletePedido'),
 ]
