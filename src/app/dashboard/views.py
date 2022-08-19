@@ -119,7 +119,7 @@ class PedidoList(ListView, LoginRequiredMixin):
     model = Pedido
     queryset = Pedido.objects.all()
     ordering =['id']
-    paginated_by = 10
+    paginated_by = 5
     template_name = 'dashboard/pedido_list.html'
     group_required = [u"gerente"]
 
@@ -141,4 +141,36 @@ class PedidoDelete(DeleteView, LoginRequiredMixin):
 
 
 
+class EnderecoCreate(CreateView, LoginRequiredMixin):
+    login_url: reverse_lazy('login')
+    model = Endereco_de_Entrega
+    fields = "__all__"
+    queryset = Endereco_de_Entrega.objects.all()
+    success_url = reverse_lazy('listEndereco')
+    template_name = 'dashboard/endereco_form.html'
+    group_required = [u"gerente"]
+    
+class EnderecoList(ListView, LoginRequiredMixin):
+    model = Endereco_de_Entrega
+    queryset = Endereco_de_Entrega.objects.all()
+    ordering =['id']
+    paginated_by = 5
+    template_name = 'dashboard/endereco_list.html'
+    group_required = [u"gerente"]
 
+    
+class EnderecoUpdate(UpdateView, LoginRequiredMixin):
+    model = Endereco_de_Entrega
+    fields = '__all__'
+    success_url = reverse_lazy('listEndereco')
+    template_name = 'dashboard/endereco_form.html'
+    group_required = [u"gerente"] 
+
+
+class EnderecoDelete(DeleteView, LoginRequiredMixin):
+    model = Endereco_de_Entrega
+    fields = "__all__"
+    queryset = Endereco_de_Entrega.objects.all()
+    success_url = reverse_lazy('listEndereco')
+    template_name = 'dashboard/endereco_confirm_delete.html'
+    group_requirement = [u"gerente"]
