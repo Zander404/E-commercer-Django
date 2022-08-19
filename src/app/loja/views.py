@@ -6,7 +6,7 @@ from .utils import cookieCart, cartData, guestOrder
 import datetime
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
-
+from django.core.paginator import Paginator
 
 #import para generic da view
 from  django.views.generic import ListView, CreateView, UpdateView, DeleteView
@@ -20,7 +20,13 @@ def loja(request):
     itemsCarrinho = data['itemsCarrinho']
 
         
-    produtos = Produto.objects.all()
+    produto = Produto.objects.all()
+    paginator = Paginator(produto, 6)
+    
+    page = request.GET.get('page')
+    produtos = paginator.get_page(page)
+    
+    
 
     context = {'produtos': produtos, 'itemsCarrinho': itemsCarrinho}
     return render(request, 'loja/loja.html', context)

@@ -29,4 +29,12 @@ urlpatterns = [
    path("pedido/createPedido/", views.PedidoCreate.as_view(), name='createPedido'),
    path("pedido/updatePedido/<int:pk>/", views.PedidoUpdate.as_view(), name="updatePedido"),
    path("pedido/deletePedido/<int:pk>/", views.PedidoDelete.as_view(), name='deletePedido'),
+   
+   #CRUD de Endereços
+   
+   path('endereco/listEndereco/', views.EnderecoList.as_view(), name='listEndereco'),
+   path('endereco/createEndereco/', views.EnderecoCreate.as_view(), name='createEndereco'),
+   path('endereco/updateEndereco/<int:pk>', views.EnderecoUpdate.as_view(), name='updateEndereco'),
+   path('endereco/deleteEndereco/<int:pk>', views.EnderecoDelete.as_view(), name='deleteEndereco'),
+   
 ]
