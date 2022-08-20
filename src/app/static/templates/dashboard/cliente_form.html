@@ -2,12 +2,18 @@
 {% load static %}
 {% block content %}
 
-<h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
-    Cadastro de Cliente </h1>
-<form method="post" action=".">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" value="Salvar">
-  <input type="reset" value="Cancelar" onclick ="location.href = '{% url 'listCliente' %}'" >
+  {%if user.is_superuser%}
 
+  <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
+      Cadastro de Cliente </h1>
+  <form method="post" action=".">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Salvar">
+    <input type="reset" value="Cancelar" onclick ="location.href = '{% url 'listCliente' %}'" >
+  </form>
+  
+    {%else%}
+      <h1> Você não tem permissão de adiconar clientes</h1>
+    {%endif%}
 {%endblock content%}

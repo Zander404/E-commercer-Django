@@ -2,14 +2,18 @@
 {% load static %}
 {% block content %}
 
-<h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
-    Tem certeza que quer apagar o Endereco: '{{ object.endereco }}'? </h1>
-<form action="." method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Sim tenho certeza" >
-    <input type="reset" value="Não quero apagar" onclick ="location.href = '{% url 'listEndereco' %}'" >
-</form>
+ {%if user.is_superuser%}
 
+        <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
+            Tem certeza que quer apagar o Endereços: '{{ object.endereco }}'? </h1>
+        <form action="." method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Sim tenho certeza" >
+            <input type="reset" value="Não quero apagar" onclick ="location.href = '{% url 'listEndereco' %}'" >
+        </form>
+{% else %}
+        <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
+            Você não tem permissão para apagar o Endereço: '{{ object.endereco }}' </h1>
 
 {%endblock content%}

@@ -115,13 +115,13 @@ class PedidoCreate(CreateView, LoginRequiredMixin):
     template_name = 'dashboard/pedido_form.html'
     group_required = [u"gerente"]
 
-class PedidoList(ListView, LoginRequiredMixin):
+class PedidoList(ListView):
     model = Pedido
     queryset = Pedido.objects.all()
-    ordering =['id']
-    paginated_by = 5
+    ordering = ['id']
+    paginate_by = 10
     template_name = 'dashboard/pedido_list.html'
-    group_required = [u"gerente"]
+
 
 class PedidoUpdate(UpdateView, LoginRequiredMixin):
     model = Pedido
@@ -139,8 +139,6 @@ class PedidoDelete(DeleteView, LoginRequiredMixin):
     group_required = [u"gerente"]
 
 
-
-
 class EnderecoCreate(CreateView, LoginRequiredMixin):
     login_url: reverse_lazy('login')
     model = Endereco_de_Entrega
@@ -153,10 +151,9 @@ class EnderecoCreate(CreateView, LoginRequiredMixin):
 class EnderecoList(ListView, LoginRequiredMixin):
     model = Endereco_de_Entrega
     queryset = Endereco_de_Entrega.objects.all()
-    ordering =['endereco']
-    paginated_by = 5
+    ordering = ['id']
+    paginate_by = 10
     template_name = 'dashboard/endereco_list.html'
-    group_required = [u"gerente"]
 
     
 class EnderecoUpdate(UpdateView, LoginRequiredMixin):

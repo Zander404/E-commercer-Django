@@ -20,17 +20,20 @@
         {% endfor %}
        
     </div>
+    <br>
     
-    <div class="pagination">
+    <div class="pagination" id="pagination">
         <span class="steps-links">
+
             {% if produtos.has_previous %}
-                <a class="page-back" href="{% url 'loja' %}?page={{ produtos.previous_page_number}}">Anterior</a>
+                <a class="page-back" href="{% url 'loja' %}?page={{ produtos.previous_page_number}}"><button class="btn btn-secondary">Anterior</button></a>
             {% endif %}
             <span class="atual">
-                {{ produtos.number }} de {{ produtos.paginator.num_pages }}
+                {{ produtos.number }} de {{ produtos.paginator.num_pages }}  
             </span>
+
             {% if produtos.has_next %}
-                <a class="page-next" href="{% url 'loja' %}?page={{ produtos.next_page_number}}">Próximo</a>
+                <a class="page-next" href="{% url 'loja' %}?page={{ produtos.next_page_number}}"><button class="btn btn-primary">Próximo</button></a>
             {% endif %}
         </span>
     </div>

@@ -18,15 +18,11 @@ def loja(request):
 
     data = cartData(request)
     itemsCarrinho = data['itemsCarrinho']
-
         
     produto = Produto.objects.all()
     paginator = Paginator(produto, 6)
-    
     page = request.GET.get('page')
     produtos = paginator.get_page(page)
-    
-    
 
     context = {'produtos': produtos, 'itemsCarrinho': itemsCarrinho}
     return render(request, 'loja/loja.html', context)
@@ -35,11 +31,9 @@ def loja(request):
 def view (request, id):
     data = cartData(request)
     itemsCarrinho = data['itemsCarrinho']
-
         
     produto = Produto.objects.get(id = id)
     print(produto)
-   
 
     context = {'produto': produto, 'itemsCarrinho': itemsCarrinho}
     return render(request, 'loja/view.html', context)
@@ -63,7 +57,6 @@ def checkout(request):
     pedido = data['pedido']
     itemsCarrinho = data['itemsCarrinho']
 
-
     context = {'items': items, 'pedido': pedido, 'itemsCarrinho': itemsCarrinho}
     return render(request, 'loja/checkout.html', context)
 
@@ -81,7 +74,6 @@ def update_item(request):
     pedido, criado = Pedido.objects.get_or_create(cliente=cliente, complete=False)
     pedidoItem, criado = ItemPedido.objects.get_or_create(pedido=pedido, produto=produto)
 
-
     if action == 'add':
         pedidoItem.quantidade = (pedidoItem.quantidade + 1)
         
@@ -92,7 +84,6 @@ def update_item(request):
 
     if pedidoItem.quantidade <= 0:
         pedidoItem.delete()
-
 
     return JsonResponse('Item atualizado com sucesso!', safe=False)
 
@@ -127,4 +118,3 @@ def process_pedido(request):
   
     return JsonResponse('Pedido processado com sucesso!', safe=False)
 
-#Views da Dashboard

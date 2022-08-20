@@ -2,13 +2,17 @@
 {% load static %}
 {% block content %}
 
+  {%if user.is_superuser%}
+    <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
+        Cadastro de Pedido </h1>
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" value="Salvar">
+          <input type="reset" value="Cancelar" onclick ="location.href = '{% url 'listPedido' %}'" >
+        </form>
+  {%else%}
+  <h1> Você não tem permissão para acessar essa página </h1>
+  {%endif%}
 
-<h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
-    Cadastro de Pedido </h1>
-    <form method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <input type="submit" value="Salvar">
-      <input type="reset" value="Cancelar" onclick ="location.href = '{% url 'listPedido' %}'" >
-
-{%endblock content%}
+  {%endblock content%}
