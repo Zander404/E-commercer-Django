@@ -45,11 +45,15 @@
             <br>
             <div class="box-element hidden" id="payment-info">
                 <small>Opções de Pagamento</small>
-                <button id="make-payment">
+                <button id="make-payment" onclick="openPopup()">
                     <img id="debit" src="{%static 'img/debit.png'%}"> Débito </button>
                 <p id="divisor">OU</p>
-                <button id="make-payment-credit">
+                <button id="make-payment-credit" onclick="openPopup()">
                     <img id="credit-card" src="{%static 'img/credit_card.png'%}"> Crédito </button>
+                {% comment %} <div class="Popup" id="popup">
+                    <h2> Obrigado </h2>
+
+                </div> {% endcomment %}
             </div>
 
         </div>

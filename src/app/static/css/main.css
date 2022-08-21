@@ -34,6 +34,42 @@ h1,h2,h3,h4,h5,h6{
 	background-color: #1b6a2f!important;
 }
 
+.popup{
+	width: 400px;
+	background: #fff;
+	border-radius: 6px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	padding: 0 30px 30px;
+	color: #333;
+
+}
+.popup img{
+	width: 100px;
+	margin-top: -50px;
+	border-radius: 50%;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.popup h2{
+	margin-top: 20px;
+	font-size: 32px;
+}
+.popup p{
+	margin: 20px 0;
+}
+
+.popup button{
+	border: 0;
+	background: #1b6a2f;
+	color: #fff;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
 
 
 /* CARRINHO */
