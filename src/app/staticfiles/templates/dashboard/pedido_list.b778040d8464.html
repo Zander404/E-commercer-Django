@@ -1,0 +1,58 @@
+{% extends "loja/main.html" %}
+{% load static %}
+{% block content %}
+
+
+    {%if user.is_superuser%}
+
+        <main>
+
+            <section class="cadastro">
+                <h1 class="cadastro__title" > Listagem dos Pedidos
+        </h1>
+                <br>
+                <br>
+
+                <input class="cadastro__novo" type="submit" value="Novo Pedido" onclick="location.href= '{% url 'createPedido' %}'">
+
+                <table border="1" id="tabela" >
+                    <thead class="cadastro__thead">
+                        <tr>
+                            <th scope="col">Pedido</th>
+                            <th scope="col">Cliente</th>
+                            <th class="cadastro__th" scope="col">Opções</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody class="cadastro_tbody">
+
+                        {% for Pedido in object_list %}
+                            <tr scope="row">
+                                <td class="cadastro__data"> {{ Pedido.id }} </td>
+                                <td class="cadastro__data"> {{ Pedido.cliente }}</td>
+                                <td class="cadastro__data">
+                                    <a href="{% url 'updatePedido' Pedido.id %}"><button class="btn btn-warning btn-sm" title="Editar"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>
+                                    <a href="{% url 'deletePedido' Pedido.id %}"><button class="btn btn-danger btn-sm" title="Deletar"><i class="fa fa-trash" aria-hidden="true"></i></button></a>
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <div class="page-links">
+
+                    {% if page_obj.has_previous %}
+                        <a href="{% url 'listPedido' %}?page={{ page_obj.previous_page_number}}" >Anterior</a>
+                    {% endif %}
+
+                    {% if page_obj.has_next %}
+                        <a href="{% url 'listPedido' %}?page={{ page_obj.next_page_number}}"> Próximo </a>
+                    {% endif %}
+            </div>
+    {%else%}
+        <h1> Você não tem permissão para acessar essa página </h1>
+    {%endif%}
+
+{%endblock content%}
