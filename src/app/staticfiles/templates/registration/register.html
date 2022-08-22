@@ -1,0 +1,50 @@
+
+{% extends "loja/main.html" %}
+{% load static %}
+{% block content %}
+
+<body>
+	<form action="/accounts/register" method="POST" class="form-horizontal">
+		{% csrf_token%}
+		<div class="mx-auto" style="width: 400px;">
+
+			<div class="col-xs-8 col-xs-offset-4">
+				<h2 style="text-align:center;">Criar Conta</h2>
+			</div>
+			<hr />
+			<div class="form-group">
+				<label for="username">Nome de Usuário</label>
+				<input type="text" class="form-control" name="username" id="username" placeholder="Nome de Usuário"
+					Required>
+			</div>
+			<div class="form-group">
+				<label for="fanme">Primeiro Nome</label>
+				<input type="text" class="form-control" name="first_name" id="first_name" placeholder="Primeiro Nome" Required>
+			</div>
+			<div class="form-group">
+				<label for="email">Email</label>
+				<input type="email" class="form-control" name="email" id="email" placeholder="Entre com seu email" Required>
+			</div>
+			<div class="form-group">
+				<label for="password">Senha</label>
+				<input type="password" class="form-control" name="password" id="password" placeholder="Enter Password"
+					Required>
+			</div>
+			<div class="form-group">
+				<label for="confirm_password">Confirmar Senha</label>
+				<input type="password" class="form-control" name="confirm_password" id="confirm_password"
+					placeholder="Confirmer sua Senha" Required>
+			</div>
+			<button type="submit" class="btn btn-primary" id="criar_User">Criar Conta</button>
+		</div>
+	</form>
+	<div class="form-group">
+		{% for message in messages %}
+		<div class="alert alert-danger" role="alert">
+			{{message}}
+		</div>
+		{% endfor %}
+	</div>
+
+{% endblock content%}
+

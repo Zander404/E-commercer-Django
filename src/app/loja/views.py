@@ -118,3 +118,7 @@ def process_pedido(request):
   
     return JsonResponse('Pedido processado com sucesso!', safe=False)
 
+
+def handler404(request, exception):
+    return render(request, 'exception/404.html')
+
