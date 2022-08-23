@@ -13,3 +13,6 @@ RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 COPY ./src/app . 
 
+EXPOSE 8000
+CMD gunicorn app.wsgi:application --bind 0.0.0.0:$PORT
+

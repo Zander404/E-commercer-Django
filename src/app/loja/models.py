@@ -23,8 +23,9 @@ class Produto(models.Model):
     nome = models.CharField(max_length=200, null=True)
     preco = models.DecimalField(max_digits=7, decimal_places=2)
     digital = models.BooleanField(default=False, null=True, blank=False)
-    image = models.ImageField("image", null=True, blank=True, upload_to='produtos')
     descricao = models.TextField(null=True, blank=True)
+    image = models.ImageField("image", null=True, blank=True, upload_to='produtos')
+   
 
     def __str__(self):
         return self.nome
@@ -43,7 +44,7 @@ class Produto(models.Model):
         try:
             url = self.image.url
         except:
-            url = 'static/img/placeholder.png'
+            url = '/static/img/placeholder.png'
         return url
 
     class Meta:

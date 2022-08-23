@@ -300,3 +300,23 @@ border-radius: 33%;
 	background-color: #fff;
 	color: #000;
 }
+
+#img{
+	box-shadow:hsl(0, 0%, 100%) 0 0 16px;
+	background-color: #fff;
+	border-radius: 4px;
+	padding: 50px;
+}
+#linha{
+	display: flex;
+	flex-flow: row wrap;
+	}
+#preview{
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	padding: 80px;
+	border-radius: 30px;
+	position:  center;
+	background-color: #fff;
+	}

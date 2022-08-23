@@ -21,6 +21,7 @@ from django.conf import settings
 
 
 urlpatterns = [
+    
     path('admin/', admin.site.urls),
     path('', include('loja.urls')),
     path("accounts/", include("django.contrib.auth.urls")),
@@ -30,6 +31,5 @@ urlpatterns = [
 
 handler404 = "loja.views.handler404"
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

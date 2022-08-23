@@ -50,10 +50,8 @@
                 <p id="divisor">OU</p>
                 <button id="make-payment-credit" onclick="openPopup()">
                     <img id="credit-card" src="{%static 'img/credit_card.png'%}"> Crédito </button>
-                {% comment %} <div class="Popup" id="popup">
-                    <h2> Obrigado </h2>
-
-                </div> {% endcomment %}
+                <br>
+                
             </div>
 
         </div>
@@ -118,6 +116,7 @@
                 alert('Redirecionando para a Loja...')
                 window.location.href = "{% url 'loja' %}";
             }else{
+                alert('Pagamento em Débito selecionado com sucesso!!!')
                 submitFormData()
             }
         })
@@ -128,6 +127,7 @@
                 alert('Redirecionando para a Loja...')
                 window.location.href = "{% url 'loja' %}";
             }else{
+                alert('Pagamento em Cartão de Crédito selecionado com sucesso!')
                 submitFormData()
             }
         })
@@ -178,7 +178,6 @@
                 response.json()
             ).then(data => {
                 console.log('Sucesso: ',data);
-                alert('Pedido realizado com sucesso!');
                 cart = {}
                 document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
                 window.location.href = "{% url 'loja' %}"

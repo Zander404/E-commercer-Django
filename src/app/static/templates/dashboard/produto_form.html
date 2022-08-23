@@ -7,15 +7,46 @@
 
     <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
         Cadastro de Produto </h1>
-        <form method="post" enctype="multipart/form-data">
-          {% csrf_token %}
-          {{ form.as_p }}
-          <input type="submit" value="Salvar">
-          <input type="reset" value="Cancelar" onclick ="location.href = '{% url 'listProduto' %}'" >
-        </form>
+        <div id="linha" >
+          <div width=50%>
+            <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{ form.as_p }}
+
+              <p>Preview da Imagem <p>
+              <div id="preview" width=50% >
+                <img id="img" align="center" >
+              </div>
+              <br>
+
+              <input type="submit" value="Salvar">
+              <input type="reset" value="Cancelar" onclick ="location.href = '{% url 'listProduto' %}'" >
+            </form>
+        </div>
+
+      </div>
+              
+        <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+      <script>
+        $(function(){
+          $('#id_image').change(function(){
+            console.log($(this)[0].files[0]);
+            const file = $(this)[0].files[0];
+            const fileReader = new FileReader();
+            fileReader.onloadend = function(){
+              $('img').attr('src', fileReader.result);
+            }
+            fileReader.readAsDataURL(file);
+          });
+        })
+      </script>
   {%else%}
     <h1> Você não tem permissão para acessar essa página </h1>
   {%endif%}
         
 
 {%endblock content%}
+

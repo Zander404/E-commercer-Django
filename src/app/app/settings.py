@@ -14,6 +14,8 @@ import os
 
 import django_heroku
 from pathlib import Path
+import dj_database_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,19 +25,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8mo@hfy!y1@!&ci)6kythpq*31#ojffd5nq56wq^(wfbv-86*&'
+SECRET_KEY = os.environ.get('SECRET_KEY', default='foo')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-WhiteNoise = True
+DEBUG = int(os.environ.get('DEBUG', default=0))
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
 
-ALLOWED_HOSTS = ["localhost:8000"]
+
+
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS=['https://luludocker.herokuapp.com', "https://localhost:8000"]
+CSRF_COOKIE_DOMAIN = 'https://luludocker.herokuapp.com', "https://localhost:8000"
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'whitenoise.runserver_nostatic',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -135,15 +141,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, '/staticfiles/')
+STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-MEDIA_URL = 'static/img/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles/img/')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media');
 
 
 
@@ -155,5 +160,7 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 handler404 = 'app.views.page_not_found_view'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+CSRF_COOKIE_SECURE=False
 
+DATABASE_URL = os.environ.get('DATABASE_URL')
 django_heroku.settings(locals())
