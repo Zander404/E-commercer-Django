@@ -1,4 +1,4 @@
 E-Commerce Django usando Docker
 
 
-Deploy do Projeto: ( https://luludecomer.herokuapp.com/ )
+Deploy do Projeto: ( https://luludocker.herokuapp.com/ )
