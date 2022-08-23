@@ -27,14 +27,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', default='foo')
 
-DEBUG = int(os.environ.get('DEBUG', default=1))
+DEBUG = int(os.environ.get('DEBUG', default=0))
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
 
 
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS=['https://glacial-lake-56024.herokuapp.com']
-CSRF_COOKIE_DOMAIN = 'https://glacial-lake-56024.herokuapp.com'
+CSRF_TRUSTED_ORIGINS=['https://luludocker.herokuapp.com', "https://localhost:8000"]
+CSRF_COOKIE_DOMAIN = 'https://luludocker.herokuapp.com', "https://localhost:8000"
 
 
 # Application definition
